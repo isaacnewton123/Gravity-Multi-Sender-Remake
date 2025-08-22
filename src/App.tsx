@@ -1,9 +1,12 @@
 import Header from './components/header'
 import { getDefaultConfig, RainbowKitProvider } from '@rainbow-me/rainbowkit';
 import { gravityAlphaMainnet } from './config/network';
-import { http, WagmiProvider } from 'wagmi';
-import { QueryClient , QueryClientProvider } from '@tanstack/react-query';
-
+import { WagmiProvider } from 'wagmi';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { http } from 'viem'
+import TextHeader from './components/textHeader';
+import StepBar from './components/step-bar';
+import MultiSend from './components/multi-send';
 
 const config = getDefaultConfig({
   appName: 'Gravity MultiSender',
@@ -16,15 +19,23 @@ const config = getDefaultConfig({
 
 const queryClient = new QueryClient()
 
+
 function App() {
 
   return (
     <WagmiProvider config={config}>
       <QueryClientProvider client={queryClient}>
         <RainbowKitProvider>
-        <div className='bg-gray-100 w-screen h-screen flex justify-between flex-col'>
           <Header />
-        </div>
+          <div className='max-w-4xl mx-auto space-y-4 py-12'>
+            <TextHeader />
+            <div className='flex flex-col justify-end items-center'>
+              <StepBar />
+            </div>
+            <div className='w-full h-80 overflow-hidden flex justify-center'>
+              <MultiSend />
+            </div>
+          </div>
         </RainbowKitProvider>
       </QueryClientProvider>
     </WagmiProvider>
