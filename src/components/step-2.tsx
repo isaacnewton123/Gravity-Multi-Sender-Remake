@@ -1,4 +1,11 @@
+import { useStepContext } from "../context/useStepContext"
+
 const Step2 = () => {
+
+    const {setStep} = useStepContext()
+    const handleSubmit = () => {
+        setStep(3)
+    }
     return (
         <div className="p-10 max-w-xl w-full flex flex-col items-center space-y-4">
             {/* Judul dengan font yang lebih kecil */}
@@ -16,7 +23,9 @@ const Step2 = () => {
             />
 
             {/* Tombol review */}
-            <button className="bg-blue-600 w-32 h-10 rounded-lg text-white font-semibold text-md hover:bg-blue-500 transition-colors duration-200 shadow-lg transform hover:scale-105 cursor-pointer">
+            <button
+            onClick={handleSubmit}
+            className="bg-blue-600 w-32 h-10 rounded-lg text-white font-semibold text-md hover:bg-blue-500 transition-colors duration-200 shadow-lg transform hover:scale-105 cursor-pointer">
                 Review
             </button>
         </div>

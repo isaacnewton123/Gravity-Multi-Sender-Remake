@@ -7,6 +7,7 @@ import { http } from 'viem'
 import TextHeader from './components/textHeader';
 import StepBar from './components/step-bar';
 import MultiSend from './components/multi-send';
+import { StepProvider } from './context/stepContext';
 
 const config = getDefaultConfig({
   appName: 'Gravity MultiSender',
@@ -26,6 +27,7 @@ function App() {
     <WagmiProvider config={config}>
       <QueryClientProvider client={queryClient}>
         <RainbowKitProvider>
+          <StepProvider>
           <Header />
           <div className='max-w-4xl mx-auto space-y-4 py-12'>
             <TextHeader />
@@ -36,6 +38,7 @@ function App() {
               <MultiSend />
             </div>
           </div>
+          </StepProvider>
         </RainbowKitProvider>
       </QueryClientProvider>
     </WagmiProvider>
