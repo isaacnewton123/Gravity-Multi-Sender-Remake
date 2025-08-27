@@ -1,4 +1,5 @@
 import React from "react";
+import { useStepContext } from "../context/useStepContext";
 
 interface StepItem {
   step: number;
@@ -20,21 +21,45 @@ const StepBar = () => {
       label: "Review & Submit",
     },
   ];
+
+  const { step } = useStepContext();
+
   return (
     <div className="flex items-center justify-center ">
       {stepItems.map((item, index) => {
+        const isActive = item.step === step;
+        const isCompleted = item.step < step;
+        const isUpcoming = item.step > step;
+
+        const circleClasses = `
+          h-8 w-8 flex items-center justify-center rounded-full font-bold text-white
+          ${isActive ? "bg-pink-600" : ""}
+          ${isCompleted ? "bg-pink-600" : ""}
+          ${isUpcoming ? "bg-gray-400" : ""}
+        `;
+
+        const labelClasses = `
+          text-center mt-2 text-xs font-semibold
+          ${isActive ? "text-pink-600" : "text-gray-400"}
+        `;
+
+        const dividerClasses = `
+          h-px w-32 -mt-5 -ml-6
+          ${isCompleted ? "bg-pink-600" : "bg-gray-400"}
+        `;
+
         return (
           <React.Fragment key={item.step}>
             <div className="flex flex-col items-center -ml-8">
-              <div className="h-8 w-8 flex items-center justify-center rounded-full font-bold bg-pink-600 text-white">
+              <div className={circleClasses}>
                 {item.step}
               </div>
-              <span className="text-center mt-2 text-xs font-semibold text-pink-400">
+              <span className={labelClasses}>
                 {item.label}
               </span>
             </div>
             {index < stepItems.length - 1 && (
-              <div className="h-px w-32 -mt-5 -ml-6 bg-pink-600"></div>
+              <div className={dividerClasses}></div>
             )}
           </React.Fragment>
         );
