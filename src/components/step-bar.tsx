@@ -1,5 +1,5 @@
 import React from "react";
-import { useStepContext } from "../context/useStepContext";
+import { useStepContext } from "../context/step/useStepContext";
 
 interface StepItem {
   step: number;

@@ -2,7 +2,7 @@ import { useAccount } from "wagmi"
 import Step2 from "./step-2"
 import Step1 from "./step-1"
 import { useEffect } from "react"
-import { useStepContext } from "../context/useStepContext"
+import { useStepContext } from "../context/step/useStepContext"
 import Step3 from "./step-3"
 
 const MultiSend = () => {
